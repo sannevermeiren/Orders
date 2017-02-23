@@ -1,0 +1,3 @@
+rootProject.name = 'Orders'
+include 'Order'
+include 'Supplier'
