@@ -5,6 +5,7 @@ import be.cegeka.orders.order.domain.customers.CustomerRepository;
 import org.jvnet.hk2.annotations.Service;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by sannev on 27/02/2017.
@@ -25,4 +26,10 @@ public class CustomerService {
         Customer customer = new Customer(name, lastname,email, street, housenumber,postalcode, city, phonenumber);
         customerRepository.addCustomer(customer);
     }
+
+    public List<Customer> getAllCustomers() {
+        return customerRepository.getAll();
+    }
+
+
 }
