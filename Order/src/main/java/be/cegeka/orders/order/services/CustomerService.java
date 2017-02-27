@@ -9,7 +9,7 @@ import javax.inject.Inject;
 /**
  * Created by sannev on 27/02/2017.
  */
-@Service
+@org.springframework.stereotype.Service
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
