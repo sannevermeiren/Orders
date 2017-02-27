@@ -42,6 +42,12 @@ public class CustomerServiceTest {
         verify(customerRepository).addCustomer(new Customer(name, lastname, email, street, housenumber, postalcode, city, phonenumber));
     }
 
+    @Test
+    public void serviceGetAllCustomersCallsRepositoryGetAllCustomers() throws Exception {
+        customerService.getAllCustomers();
+        verify(customerRepository).getAll();
+    }
+
 
 
 }
