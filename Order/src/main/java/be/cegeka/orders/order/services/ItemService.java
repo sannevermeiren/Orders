@@ -21,7 +21,7 @@ public class ItemService {
         itemRepository.addItem(new Item(name, description, price));
     }
 
-    public Item findItemById(int i) {
-        return null;
+    public Item findItemById(int id) {
+        return itemRepository.findItemById(id);
     }
 }

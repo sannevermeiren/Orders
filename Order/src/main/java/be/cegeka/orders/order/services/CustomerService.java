@@ -33,6 +33,6 @@ public class CustomerService {
 
 
     public Customer findCustomerById(int id) {
-        return null;
+        return customerRepository.findCustomerById(id);
     }
 }

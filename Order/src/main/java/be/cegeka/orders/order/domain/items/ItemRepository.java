@@ -1,14 +1,13 @@
 package be.cegeka.orders.order.domain.items;
 
+import org.springframework.stereotype.Repository;
+
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-/**
- * Created by kevinbi on 27/02/2017.
- */
-@Named
+@Repository
 public class ItemRepository {
 
     @PersistenceContext
@@ -20,5 +19,9 @@ public class ItemRepository {
 
     public void addItem(Item item) {
         entityManager.persist(item);
+    }
+
+    public Item findItemById(int id) {
+        return entityManager.find(Item.class, id);
     }
 }
