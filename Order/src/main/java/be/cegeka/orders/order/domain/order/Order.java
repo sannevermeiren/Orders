@@ -1,7 +1,6 @@
 package be.cegeka.orders.order.domain.order;
 
 import be.cegeka.orders.order.domain.customers.Customer;
-import org.springframework.boot.autoconfigure.web.ResourceProperties;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -13,28 +12,29 @@ import java.util.List;
  */
 
 @Entity(name = "CUSTOMER_ORDER")
-@Table (name = "ORDER")
+@Table (name = "ORDERS")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ORDER_ID")
     private int orderid;
-    @Column (name ="CUSTOMER_ID")
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = Customer.class)
+    @JoinColumn (name ="CUSTOMER_ID", referencedColumnName = "CUSTOMER_ID")
     private Customer customer;
     @Column (name = "ORDER_DATE")
     private LocalDate orderdate;
-    @Column (name = "ORDER_ITEMS")
     @OneToMany (targetEntity = OrderItem.class, cascade = CascadeType.ALL)
-    private List<OrderItem> orderITems;
+    @JoinColumn(name = "ORDER_ID", referencedColumnName = "ORDER_ID")
+    private List<OrderItem> orderItems;
 
     public Order() {
-        orderITems = new ArrayList<>();
+        orderItems = new ArrayList<>();
     }
 
     public Order(Customer customer, LocalDate orderdate, List<OrderItem> orderITems) {
         this.customer = customer;
         this.orderdate = orderdate;
-        this.orderITems = orderITems;
+        this.orderItems = orderITems;
     }
 
     public int getOrderid() {
@@ -49,7 +49,7 @@ public class Order {
         return orderdate;
     }
 
-    public List<OrderItem> getOrderITems() {
-        return orderITems;
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
     }
 }

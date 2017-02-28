@@ -14,14 +14,15 @@ public class OrderItem {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name ="IOO_ID")
     private int id;
-    @Column (name = "ORDER_ID")
     @ManyToOne
+    @JoinColumn(name = "ORDER_ID", referencedColumnName = "ORDER_ID")
     private Order order;
-    @Column (name = "ITEM_ID")
+    @OneToOne(targetEntity = Item.class)
+    @JoinColumn (name = "ITEM_ID", referencedColumnName = "ITEM_ID")
     private Item item;
     @Column (name = "QUANTITY")
     private int quantity;
-    @Column (name = "SHIPPINGDATE")
+    @Column (name = "SHIPPING_DATE", columnDefinition = "DATE")
     private LocalDate shippingdate;
 
     public OrderItem() {
