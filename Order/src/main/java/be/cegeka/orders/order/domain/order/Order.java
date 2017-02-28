@@ -4,8 +4,6 @@ import be.cegeka.orders.order.domain.customers.Customer;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by sannev on 27/02/2017.
@@ -23,18 +21,17 @@ public class Order {
     private Customer customer;
     @Column (name = "ORDER_DATE")
     private LocalDate orderdate;
-    @OneToMany (targetEntity = OrderItem.class, cascade = CascadeType.ALL)
+    @OneToOne (targetEntity = OrderItem.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "ORDER_ID", referencedColumnName = "ORDER_ID")
-    private List<OrderItem> orderItems;
+    private OrderItem orderItem;
 
     public Order() {
-        orderItems = new ArrayList<>();
     }
 
-    public Order(Customer customer, LocalDate orderdate, List<OrderItem> orderITems) {
+    public Order(Customer customer, OrderItem orderItem) {
         this.customer = customer;
-        this.orderdate = orderdate;
-        this.orderItems = orderITems;
+        this.orderdate = LocalDate.now();
+        this.orderItem = orderItem;
     }
 
     public int getOrderid() {
@@ -49,7 +46,15 @@ public class Order {
         return orderdate;
     }
 
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
+    public OrderItem getOrderItem() {
+        return orderItem;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void setOrderItem(OrderItem orderItem) {
+        this.orderItem = orderItem;
     }
 }

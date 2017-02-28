@@ -13,7 +13,7 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    public void placeOrder(Order order) {
-        orderService.insertNewOrder(order);
+    public void placeOrder(int customer_id, int item_id, int quantity) {
+        orderService.insertNewOrder(customer_id, item_id, quantity);
     }
 }

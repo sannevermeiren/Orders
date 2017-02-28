@@ -24,8 +24,8 @@ public class OrderControllerTest {
     @Test
     public void orderControllerPlaceOrder_CallsOrderServicePlaceOrder(){
         Order order = new Order();
-        orderController.placeOrder(order);
-        verify(orderService).insertNewOrder(order);
+        orderController.placeOrder(123,1,2);
+        verify(orderService).insertNewOrder(123,1,2);
     }
 
 }

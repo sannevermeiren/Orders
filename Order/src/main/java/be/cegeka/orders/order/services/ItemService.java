@@ -20,4 +20,8 @@ public class ItemService {
     public void addItem(String name, String description, double price) {
         itemRepository.addItem(new Item(name, description, price));
     }
+
+    public Item findItemById(int i) {
+        return null;
+    }
 }
